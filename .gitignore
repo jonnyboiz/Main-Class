@@ -1,14 +1,8 @@
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-sadsadsadsadsa
-you dumbass
+import java.util.*;
+import java.awt.*;
+import java.io.*;
+public class masterClass{ //The main class to connect all the classes. Produce the background and command bottom.
+public static void main(String[] args) {
+DrawingPanel panel = new DrawingPanel(750, 700);
+      panel.setBackground (Color.BLACK);
+      Graphics g=panel.getGraphics();
