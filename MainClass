@@ -6,4 +6,4 @@ public static void main(String[] args) {
 DrawingPanel panel = new DrawingPanel(750, 700);
       panel.setBackground (Color.BLACK);
       Graphics g=panel.getGraphics();
-      shlok sucks dicks everday
+
