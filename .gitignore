@@ -1,10 +1,25 @@
 import java.util.*;
 import java.awt.*;
 import java.io.*;
+import java.awt.image.*;
+import javax.imageio.ImageIO;
 
 public class masterClass{ //The main class to connect all the classes. Produce the background and command bottom.
-   public static void main(String[] args) {
+   public static void main(String[] args){
       DrawingPanel panel = new DrawingPanel(720, 765); //Same proportions as Centipede game
       panel.setBackground(Color.BLACK);
       Graphics g = panel.getGraphics();
+      Centipede c = new Centipede(360, 20);
+      BufferedImage mushroom = null;
+      try{
+         mushroom = ImageIO.read(new File("Mushroom.png"));
+      } catch (IOException e) {
+      }
+      g.drawImage(mushroom, 10, 10, null);
    }
+   
+   public static void mushroom(Graphics G){
+      //move mushroom stuff into here, then add x and y coordinate parameters so we can make a loop
+      //in main creating mushrooms at different places
+   }
+}
