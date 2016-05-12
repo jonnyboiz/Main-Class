@@ -15,11 +15,14 @@ public class masterClass{ //The main class to connect all the classes. Produce t
       DrawingPanel panel = new DrawingPanel(Width, Height); //Same proportions as Centipede game
       panel.setBackground(Color.BLACK);
       Graphics g = panel.getGraphics();      
-      String dickHead = "Player : " + player;
+      String dickHead = "PLAYER : " + player;
       g.setColor(Color.blue);
-      g.drawString(dickHead, 12, 15);//display Player's name
+      g.drawString(dickHead, 8, 15);//display Player's name
       mushroom(g);
-   
+   ///////////////////////////Displaying Score on top right corner////////////////////////////////////
+      String Score = "SCORE :";
+      g.drawString(Score, 340, 15);
+   ///////////////////////////Put in the scoring method after creat//////////////////////////////////
    }
    
    public static void mushroom(Graphics g){
@@ -35,11 +38,11 @@ public class masterClass{ //The main class to connect all the classes. Produce t
       for(int i = 0; i <= 90; i++){
          r = rand.nextInt(Width);
          c = rand.nextInt(Height - 115);
-         if (c > 10){
+         if (c > 18){
             g.drawImage(mushroom, r , c , null);
          }
       
       }
-
+   
    }
 }
