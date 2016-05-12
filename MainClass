@@ -1,48 +1,49 @@
-import java.util.*;
-import java.awt.*;
-import java.io.*;
-import java.awt.image.*;
-import javax.imageio.ImageIO;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class masterClass{ //The main class to connect all the classes. Produce the background and command bottom.
-   public static final int Width = 500;
-   public static final int Height = 560;
-   public static void main(String[] args){
-      Scanner console = new Scanner(System.in);
-      System.out.print("Player: ");//Ask player's name
-      String player = console.next();
-   
-      DrawingPanel panel = new DrawingPanel(Width, Height); //Same proportions as Centipede game
-      panel.setBackground(Color.BLACK);
-      Graphics g = panel.getGraphics();      
-      String dickHead = "PLAYER : " + player;
-      g.setColor(Color.blue);
-      g.drawString(dickHead, 8, 15);//display Player's name
-      mushroom(g);
-   ///////////////////////////Displaying Score on top right corner////////////////////////////////////
-      String Score = "SCORE :";
-      g.drawString(Score, 340, 15);
-   ///////////////////////////Put in the scoring method after creat//////////////////////////////////
+public class Button{
+
+   public static void main(String[] args) {
+      SwingUtilities.invokeLater(
+            new Runnable(){
+               public void run() {
+                  new CirclesDemo();
+               }
+            });
    }
-   
-   public static void mushroom(Graphics g){
-      BufferedImage mushroom = null;
-      try{
-         mushroom = ImageIO.read(new File("Mushroom.png"));
-      } 
-      catch (IOException e) {
-      }
-      Random rand = new Random();
-      int  r = rand.nextInt(Height);
-      int  c = rand.nextInt(Width);
-      for(int i = 0; i <= 90; i++){
-         r = rand.nextInt(Width);
-         c = rand.nextInt(Height - 115);
-         if (c > 18){
-            g.drawImage(mushroom, r , c , null);
-         }
-      
-      }
-   
+
+   public Button() {
+      JFrame frame = new JFrame();
+      frame.add(createButton(), BorderLayout.PAGE_END);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.pack();
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
+   }
+
+   private JButton createButton() {
+      JButton button = new JButton("START");
+      button.addActionListener(
+            new ActionListener(){
+               public void actionPerformed(ActionEvent e) {
+               }
+            });
+      JButton button2 = new JButton("HELP");
+      button2.addActionListener(
+            new ActionListener(){
+               public void actionPerformed(ActionEvent e) {
+               }
+            });
+      return button;
    }
 }
