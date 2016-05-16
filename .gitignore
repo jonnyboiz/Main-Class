@@ -1,13 +1,15 @@
+import java.awt.Robot;
 import java.util.*;
 import java.awt.*;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
+import java.awt.event.InputEvent;
 
 public class masterClass{ //The main class to connect all the classes. Produce the background and command bottom.
    public static final int WIDTH = 624;
    public static final int HEIGHT = 663;
-   public static void main(String[] args){
+   public static void main(String[] args)throws Exception{
       Scanner console = new Scanner(System.in);
       System.out.print("Player: ");
       String player = console.next();
@@ -23,6 +25,7 @@ public class masterClass{ //The main class to connect all the classes. Produce t
       g.drawString(Score, 340, 15);
       centipede(10, g);
       //Put in the scoring method after creat
+      Player(g);
    }
    
    public static void mushroom(Graphics g, ArrayList<Integer> mushroom){
@@ -50,5 +53,23 @@ public class masterClass{ //The main class to connect all the classes. Produce t
          g.fillOval(WIDTH / 2 - 18 * i, 20, 18, 13);
       }
       //How do I move the segments?
+   }
+   
+   public static void Player(Graphics g)throws Exception{
+   //input the spaceship.
+      BufferedImage spaceShip = null;
+      try{
+         spaceShip = ImageIO.read(new File("SpaceShip.png"));
+      } 
+      catch (IOException e) {
+      }
+   ///////////////////////////////////////////////////////////////////////
+      int i = 630;
+      int w = 800;
+      g.drawImage(spaceShip, i, w, null); 
+      Robot robot = new Robot();
+      robot.mouseMove(i,w);//set the mouse to given point.
+      robot.mousePress(InputEvent.BUTTON1_MASK);//give the function method for left click. 
+      robot.mouseRelease(InputEvent.BUTTON1_MASK);//give the function method for left click.
    }
 }
