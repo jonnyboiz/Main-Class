@@ -5,31 +5,35 @@ import java.awt.image.*;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import javax.swing.ImageIcon;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 
 public class Game{
    public static final int WIDTH = 624;
    public static final int HEIGHT = 663;
    
-   public static void main(String args[]){
+   public static void main(String args[])throws Exception {
       JFrame frame = new JFrame();
-      frame.setSize(624,663);
+      frame.setSize(WIDTH,HEIGHT);
+      frame.setTitle("Ding Dong");
+      frame.setLocation(360, 150);
       frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-      frame.getContentPane().setBackground(Color.BLACK);
-      frame.setVisible(true);
-      
       Scanner console = new Scanner(System.in);
       System.out.print("Player: ");
       String player = console.next();
-      
+      frame.getContentPane().setBackground(Color.BLACK);
+      frame.setVisible(true);
       Graphics g = frame.getGraphics();
-      g.setColor(Color.BLUE);
+      g.setColor(Color.WHITE);
       g.drawString("PLAYER : " + player.toUpperCase(), 8, 15);
       ArrayList<Integer> mushroom = new ArrayList<Integer>();
       mushroom(g, mushroom);
       g.drawString("SCORE :", 340, 15);
+      player(g);
       //centipede(10, g);
    }
-      public static void mushroom(Graphics g, ArrayList<Integer> mushroom){
+   public static void mushroom(Graphics g, ArrayList<Integer> mushroom){
       BufferedImage mushroomPic = null;
       try{
          mushroomPic = ImageIO.read(new File("Mushroom.png"));
@@ -40,11 +44,27 @@ public class Game{
       for(int i = 0; i <= 90; i++){
          int x = rand.nextInt(WIDTH / 20) * 20;
          int y = rand.nextInt(HEIGHT / 20) * 20;
-         if (y > 48 && y < 550){
+         if (y > 40 && y < 550){
             g.drawImage(mushroomPic, x, y, null);
             mushroom.add(x); //Saves x and y coordinates to ArrrayList, all even indexes will be x,
             mushroom.add(y); //all odd indexes will be y coordinates
          }
       }
+   }
+   public static void player(Graphics g)throws Exception {
+      BufferedImage spaceshipPic = null;
+      try{
+         spaceshipPic = ImageIO.read(new File("SpaceShip.png"));
+      } 
+      catch (IOException e) {
+      }
+      int Ding = WIDTH + 45;
+      int Dong = HEIGHT + 120;
+      g.drawImage(spaceshipPic, 600, 600, null);
+      Robot robot = new Robot();
+      robot.mouseMove(Ding, Dong);
+      robot.mousePress(InputEvent.BUTTON1_MASK);
+      robot.mouseRelease(InputEvent.BUTTON1_MASK);
+   
    }
 }
