@@ -1,31 +1,35 @@
-import java.util.*;
 import java.awt.*;
+import java.util.*;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
-public class masterClass{ //The main class to connect all the classes. Produce the background and command bottom.
+public class Game{
    public static final int WIDTH = 624;
    public static final int HEIGHT = 663;
-   public static void main(String[] args){
+   
+   public static void main(String args[]){
+      JFrame frame = new JFrame();
+      frame.setSize(624,663);
+      frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      frame.getContentPane().setBackground(Color.BLACK);
+      frame.setVisible(true);
+      
       Scanner console = new Scanner(System.in);
       System.out.print("Player: ");
       String player = console.next();
-      DrawingPanel panel = new DrawingPanel(WIDTH, HEIGHT); //Same proportions as Centipede game
-      panel.setBackground(Color.BLACK);
-      Graphics g = panel.getGraphics();
-      g.setColor(Color.blue);
+      
+      Graphics g = frame.getGraphics();
+      g.setColor(Color.BLUE);
       g.drawString("PLAYER : " + player.toUpperCase(), 8, 15);
       ArrayList<Integer> mushroom = new ArrayList<Integer>();
       mushroom(g, mushroom);
-      
-      String Score = "SCORE :";
-      g.drawString(Score, 340, 15);
-      centipede(10, g);
-      //Put in the scoring method after creat
+      g.drawString("SCORE :", 340, 15);
+      //centipede(10, g);
    }
-   
-   public static void mushroom(Graphics g, ArrayList<Integer> mushroom){
+      public static void mushroom(Graphics g, ArrayList<Integer> mushroom){
       BufferedImage mushroomPic = null;
       try{
          mushroomPic = ImageIO.read(new File("Mushroom.png"));
@@ -42,13 +46,5 @@ public class masterClass{ //The main class to connect all the classes. Produce t
             mushroom.add(y); //all odd indexes will be y coordinates
          }
       }
-   }
-   
-   public static void centipede(int length, Graphics g){
-      g.setColor(Color.green);
-      for (int i = 0; i <= length; i++){
-         g.fillOval(WIDTH / 2 - 18 * i, 20, 18, 13);
-      }
-      //How do I move the segments?
    }
 }
